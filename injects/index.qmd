@@ -1,0 +1,17 @@
+---
+title: "Injects"
+description: "Injects are assignments given to team members in order to practice for CCDC. They include a written component, which I have decided to put here."
+listing:
+  contents: .
+  sort: "date desc"
+  type: table
+  categories: true
+  sort-ui: false
+  filter-ui: false
+page-layout: full
+title-block-banner: true
+
+---
+
+
+

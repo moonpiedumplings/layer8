@@ -1,0 +1,17 @@
+---
+title: "Projects"
+description: "Projects I have done for the club, usually of my own volition"
+listing:
+  contents: .
+  sort: "date desc"
+  type: table
+  categories: true
+  sort-ui: false
+  filter-ui: false
+page-layout: full
+title-block-banner: true
+
+---
+
+
+

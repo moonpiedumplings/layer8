@@ -1,0 +1,20 @@
+project:
+  type: website
+
+website:
+  title: "Jeffrey Fonseca's Layer 8 Work"
+  navbar:
+    left:
+      - href: injects/
+        text: Injects
+      - href: projects/
+        text: Project
+
+format:
+  html:
+    theme: darkly
+    css: styles.css
+    toc: true
+
+
+
