@@ -8,7 +8,7 @@ website:
       - href: injects/
         text: Injects
       - href: projects/
-        text: Project
+        text: Projects
 
 format:
   html:

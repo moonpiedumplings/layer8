@@ -51,10 +51,14 @@ For convience purposes, I have posted this online, so I can simply copy and past
 Here is the encrypted token: 
 
 ```{.default}
-encrypted token here. 
+g6mYJ1tm32p33JZxOIMvj5QcpQAFELSm+QmKe3qDkWsehk4WN17/TLUx+aDrwFV7JqC05qIDn0E6f9+udPVcMSxvj827
 ```
 
+
+Below is a little crypto tool which requires a specific password to decrypt this token. 
 
 
 {{< include ../../tools/crypt.qmd >}}
 
+
+This will make it very convinient to transfer configurations around, since everything is on a single web page. 
