@@ -1,0 +1,14 @@
+[
+  {
+    "listing": "/injects/index.html",
+    "items": [
+      "/injects/automation/index.html"
+    ]
+  },
+  {
+    "listing": "/projects/index.html",
+    "items": [
+      "/projects/ssh/index.html"
+    ]
+  }
+]

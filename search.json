@@ -1,0 +1,51 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Layer 8",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+  },
+  {
+    "objectID": "injects/automation/index.html",
+    "href": "injects/automation/index.html",
+    "title": "Automated Upgrades Inject",
+    "section": "",
+    "text": "Linux Team\nInject 3 — Automation\nObjective: Create a script or other system that automates updates, ran every 24 hours\nI have created a systemd timer and unit file that run every 24 hours, designed for a variety of linux distros with different package managers.\nWhen these files are placed in their respective locations, the system will run the update commands of various pacakge managers. Distros unsupported by a package manager will simply fail to run for that package manager.\n\n\n/etc/systemd/system/autoupdate.service\n\n[Unit]\nDescription=autoupdate service\nAfter=network.target\n\n[Service]\nType=simple\nExecStart=/bin/bash -c \"bash -c 'dnf update -y && dnf upgrade -y' || bash -c 'DEBIAN_FRONTEND=noninteractive apt-get update -y && DEBIAN_FRONTEND=noninteractive apt-get upgrade -y' || bash -c 'pacman -Syu --noconfirm'\"\nRestart=never\n\n[Install]\nWantedBy=multi-user.target\n\n\n\n/etc/systemd/system/autoupdate.timer\n\n[Unit]\nDescription=autoupgrade timer.\n\n[Timer]\nOnCalendar=daily\nPersistent=true\n\n[Install]\nWantedBy=timers.target"
+  },
+  {
+    "objectID": "injects/index.html",
+    "href": "injects/index.html",
+    "title": "Injects",
+    "section": "",
+    "text": "Date\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nAug 26, 2023\n\n\nAutomated Upgrades Inject\n\n\nJeffrey Fonseca\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "projects/index.html",
+    "href": "projects/index.html",
+    "title": "Projects",
+    "section": "",
+    "text": "Date\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nSep 12, 2023\n\n\nSetting up ssh for linux machines in the lab\n\n\nJeffrey Fonseca\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "projects/ssh/index.html",
+    "href": "projects/ssh/index.html",
+    "title": "Setting up ssh for linux machines in the lab",
+    "section": "",
+    "text": "DNS\nFor whatever reason, the Linux desktop machines in the lab have neither a static ip nor hostnames set up.\nI asked about static ip’s and there apparently there was some issue with vlan interaction, and local hostanme resolution takes a longer time to set up.\nHowever, I found something funny, where you can actually just make a public domain name point to a private ip, and it will just work.\nSo I decided to use duckdns, for dynamic dns (if you don’t have a static ip), as an alternative to hostnames.\nHere is a systemd service I wrote that does this:\n\n\n/etc/systemd/system/duckdns.service\n\n[Unit]\nDescription=My Network Service\nWants=network-online.target\nAfter=network-online.target\n\n[Service]\nType=oneshot\nExecStart=/bin/python3 -c \"import subprocess; local_ip = subprocess.check_output('ip route get 8.8.8.8', shell=True).decode('utf-8'); private_ip = local_ip.split(); print(private_ip[6]); subprocess.run(f'echo url=\\'https://www.duckdns.org/update?domains=domainname&token=duckdnstoken&ip={private_ip[6]}\\' | curl -k -K -', shell=True)\"\n\n[Install]\nWantedBy=multi-user.target\n\nThis is the hackiest one liner you have ever seen, but it works. I originally tried all bash, but I couldn’t fit it in a systemd one liner so I ended up with this.\nFor convience purposes, I have posted this online, so I can simply copy and paste stuff from this post.\nHere is the encrypted token:\ng6mYJ1tm32p33JZxOIMvj5QcpQAFELSm+QmKe3qDkWsehk4WN17/TLUx+aDrwFV7JqC05qIDn0E6f9+udPVcMSxvj827\nBelow is a little crypto tool which requires a specific password to decrypt this token.\n\n\n\n    \n    \n    Client-side AES-256 Encryption/Decryption\n       \n\n\n    \n    \n    Enter text to encrypt/decrypt:\n    \n    \n    \n    Enter encryption/decryption password:\n    \n    \n    \n    Encrypt\n    Decrypt\n    \n    \n\n    \n\n\nThis will make it very convinient to transfer configurations around, since everything is on a single web page."
+  },
+  {
+    "objectID": "tools/crypt.html",
+    "href": "tools/crypt.html",
+    "title": "",
+    "section": "",
+    "text": "Client-side AES-256 Encryption/Decryption\n       \n\n\n    \n    \n    Enter text to encrypt/decrypt:\n    \n    \n    \n    Enter encryption/decryption password:\n    \n    \n    \n    Encrypt\n    Decrypt"
+  }
+]
