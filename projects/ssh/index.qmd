@@ -38,13 +38,28 @@ After=network-online.target
 
 [Service]
 Type=oneshot
-ExecStart=/bin/python3 -c "import subprocess; local_ip = subprocess.check_output('ip route get 8.8.8.8', shell=True).decode('utf-8'); private_ip = local_ip.split(); print(private_ip[6]); subprocess.run(f'echo url=\'https://www.duckdns.org/update?domains=domainname&token=duckdnstoken&ip={private_ip[6]}\' | curl -k -K -', shell=True)"
+ExecStart=/bin/python3 -c "import subprocess; localip = subprocess.check_output('ip route get 8.8.8.8', shell=True).decode('utf-8'); privateip = localip.split(); print(privateip[6]); subprocess.run(f'echo url=\'https://www.duckdns.org/update?domains=domainname&token=duckdnstoken&ip={private_ip[6]}\' | curl -k -K -', shell=True)"
 
 [Install]
 WantedBy=multi-user.target
 ```
 
 This is the hackiest one liner you have ever seen, but it works. I originally tried all bash, but I couldn't fit it in a systemd one liner so I ended up with this.
+
+Okay, I decided to create a proper python script. 
+
+```{.python filename="/usr/bin/duckdns"}
+#/usr/bin/python3
+import subprocess
+localip = subprocess.check_output('ip route get 8.8.8.8', shell=True).decode('utf-8')
+privateip = localip.split()
+print(privateip[6])
+subprocess.run(f"echo url='https://www.duckdns.org/update?domains=domainname&token=duckdnstoken&ip={private_ip[6]}' | curl -k -K -", shell=True)
+
+urllib.request.urlopen(f'https://www.duckdns.org/update?domains=domainname&token=duckdnstoken&ip={private_ip[6]}')
+```
+
+
 
 For convience purposes, I have posted this online, so I can simply copy and paste stuff from this post. 
 

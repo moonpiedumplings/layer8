@@ -1,3 +1,10 @@
+---
+format:
+  html:
+    code-copy: true
+---
+
+
 ```{=html}
 <!DOCTYPE html>
 <html lang="en">
@@ -23,6 +30,7 @@
             cursor: pointer;333
         }
     </style>
+
 </head>
 <body>
     <h1></h1>
@@ -40,7 +48,9 @@
     <button onclick="encryptText()">Encrypt</button>
     <button onclick="decryptText()">Decrypt</button>
     
-    <p id="outputText"></p>
+    <!--<p id="outputText"></p>-->
+    
+    <!--<div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="outputText"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Output happens here</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>-->
 
     <script>
         async function encryptText() {
@@ -87,7 +97,7 @@
             const encryptedText = btoa(String.fromCharCode(...encryptedBytes));
 
             document.getElementById('outputText').textContent =
-                'Encrypted Text: ' + encryptedText;
+                encryptedText;
         }
 
         async function decryptText() {
@@ -136,7 +146,7 @@
                 const decryptedText = new TextDecoder().decode(decryptedData);
 
                 document.getElementById('outputText').textContent =
-                    'Decrypted Text: ' + decryptedText;
+                    decryptedText;
             } catch (error) {
                 document.getElementById('outputText').textContent =
                     'Decryption failed. Please check the password and input.';
@@ -145,4 +155,38 @@
     </script>
 </body>
 </html>
+```
+
+```{.default #outputText }
+Output goes here.
+```
+
+```{=html}
+
+<div class="latestquotes">
+       <button class="copyButton btn" onclick="copyToClipboard('outputText')">| Click Here Copy text to clipboard |</button>
+
+   </div>
+<script>
+
+
+function copyToClipboard(var1){
+    let val = document.getElementById(var1).innerHTML;
+    const selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = val;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
+    alert('text copied to clipboard, please use Ctrl-V to paste the data');
+
+  }  
+
+
+</script>
 ```
