@@ -397,10 +397,24 @@ show/hide output
 <div class="sourceCode" id="outputText"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="outputText-1"><a href="#outputText-1" aria-hidden="true" tabindex="-1"></a>Output goes here.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
+<style>
+    .latestquotes .copyButton {
+        /*background-color: #your-background-color; /* Replace with your background color */
+        /*color: #your-text-color; /* Replace with your text color */
+        border-radius: 20px; /* Adjust the border-radius to your preference */
+        padding: 10px 20px; /* Adjust padding as needed */
+        border: none;
+        cursor: pointer;
+    }
+</style>
+
+
 <div class="latestquotes">
-       <button class="copyButton btn" onclick="copyToClipboard('outputText')">| Click Here Copy text to clipboard |</button>
+       <button class="copyButton" onclick="copyToClipboard('outputText')">Click Here Copy text to clipboard </button>
 
    </div>
+
+
 <script>
 
 
@@ -417,7 +431,7 @@ function copyToClipboard(var1){
     selBox.select();
     document.execCommand('copy');
     document.body.removeChild(selBox);
-    alert('text copied to clipboard, please use Ctrl-V to paste the data');
+    alert('Text copied to clipboard');
 
   }  
 
