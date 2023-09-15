@@ -157,9 +157,13 @@ format:
 </html>
 ```
 
+<details open><summary>show/hide output</summary>
+
 ```{.default #outputText }
 Output goes here.
 ```
+
+</details>
 
 ```{=html}
 
