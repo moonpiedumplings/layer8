@@ -1,7 +1,7 @@
 ---
 format:
   html:
-    code-copy: true
+    code-copy: false
 ---
 
 
@@ -167,10 +167,24 @@ Output goes here.
 
 ```{=html}
 
+<style>
+    .latestquotes .copyButton {
+        /*background-color: #your-background-color; /* Replace with your background color */
+        /*color: #your-text-color; /* Replace with your text color */
+        border-radius: 20px; /* Adjust the border-radius to your preference */
+        padding: 10px 20px; /* Adjust padding as needed */
+        border: none;
+        cursor: pointer;
+    }
+</style>
+
+
 <div class="latestquotes">
-       <button class="copyButton btn" onclick="copyToClipboard('outputText')">| Click Here Copy text to clipboard |</button>
+       <button class="copyButton" onclick="copyToClipboard('outputText')">Click Here Copy text to clipboard </button>
 
    </div>
+
+
 <script>
 
 
@@ -187,7 +201,7 @@ function copyToClipboard(var1){
     selBox.select();
     document.execCommand('copy');
     document.body.removeChild(selBox);
-    alert('text copied to clipboard, please use Ctrl-V to paste the data');
+    alert('Text copied to clipboard');
 
   }  
 
