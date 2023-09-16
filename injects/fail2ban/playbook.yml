@@ -1,0 +1,16 @@
+---
+- name: Install Fail2ban and enable the service
+  hosts: your_target_host
+  become: yes  # You may need to escalate privileges, so become root/sudo
+
+  tasks:
+    - name: Install fail2ban
+      ansible.builtin.package:
+        name: fail2ban
+        state: present
+
+    - name: Enable Fail2ban service
+      systemd:
+        name: fail2ban
+        enabled: yes
+        state: started

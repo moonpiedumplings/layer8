@@ -1,0 +1,44 @@
+---
+title: "Fail2ban Inject"
+date: "2023-9-16"
+categories: [linux, cybersecurity]
+author: "Jeffrey Fonseca"
+
+format:
+  html:
+    code-fold: true
+    code-summary: "Show the code"
+    code-block-background: true
+execute:
+  freeze: true
+---
+
+Fail2ban is a service that blocks bots and other malicious machines based on their activity and ip addresses. 
+
+I've decided to write an ansible playbook that will automate installation of fail2ban. 
+
+```{.yml}
+---
+- name: Install Fail2ban and enable the service
+  hosts: your_target_host
+  become: yes  # You may need to escalate privileges, so become root/sudo
+
+  tasks:
+    - name: Install fail2ban
+      ansible.builtin.package:
+        name: fail2ban
+        state: present
+
+    - name: Enable Fail2ban service
+      systemd:
+        name: fail2ban
+        enabled: yes
+        state: started
+```
+
+
+It's stored in the same directory as this document, so just clone this repo and cd here. 
+
+```{.default}
+ansible-playbook -i inventory playbook.yml --ask-become-pass
+```

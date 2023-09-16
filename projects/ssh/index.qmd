@@ -112,9 +112,9 @@ And here is the encyrpted duckdns token for the account linked to my school emai
 
 ```{.default}
 eIqisxdT/bPbW8xYNnVZWusGFRiOBrIxWVP/KqbKRogE9LIT//qSk8Wgcp1JKZNN+I13DY6E56RoERudJCyJza46pDM=
-``
+```
 
-This one contains: origamiorigami.
+This one contains: origamiorigami, kurumikurumi.
 
 
 This will make it very convinient to transfer configurations around, since everything is on a single web page. 
