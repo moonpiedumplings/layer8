@@ -2,30 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://moonpiedumplings.github.io/layer8/about.html</loc>
-    <lastmod>2023-09-16T21:57:53.007Z</lastmod>
+    <lastmod>2023-09-16T22:19:27.689Z</lastmod>
   </url>
   <url>
     <loc>https://moonpiedumplings.github.io/layer8/index.html</loc>
-    <lastmod>2023-09-16T21:57:53.229Z</lastmod>
+    <lastmod>2023-09-16T22:19:27.911Z</lastmod>
   </url>
   <url>
     <loc>https://moonpiedumplings.github.io/layer8/injects/automation/index.html</loc>
-    <lastmod>2023-09-16T21:57:53.795Z</lastmod>
+    <lastmod>2023-09-16T22:19:28.483Z</lastmod>
   </url>
   <url>
     <loc>https://moonpiedumplings.github.io/layer8/injects/index.html</loc>
-    <lastmod>2023-09-16T21:57:54.055Z</lastmod>
+    <lastmod>2023-09-16T22:19:28.767Z</lastmod>
+  </url>
+  <url>
+    <loc>https://moonpiedumplings.github.io/layer8/injects/fail2ban/index.html</loc>
+    <lastmod>2023-09-16T22:19:29.167Z</lastmod>
   </url>
   <url>
     <loc>https://moonpiedumplings.github.io/layer8/projects/index.html</loc>
-    <lastmod>2023-09-16T21:57:54.307Z</lastmod>
+    <lastmod>2023-09-16T22:19:29.371Z</lastmod>
   </url>
   <url>
     <loc>https://moonpiedumplings.github.io/layer8/projects/ssh/index.html</loc>
-    <lastmod>2023-09-16T21:57:54.625Z</lastmod>
+    <lastmod>2023-09-16T22:19:29.665Z</lastmod>
   </url>
   <url>
     <loc>https://moonpiedumplings.github.io/layer8/tools/crypt.html</loc>
-    <lastmod>2023-09-16T21:57:55.019Z</lastmod>
+    <lastmod>2023-09-16T22:19:30.049Z</lastmod>
   </url>
 </urlset>
