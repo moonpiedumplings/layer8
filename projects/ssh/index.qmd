@@ -60,14 +60,39 @@ Except it doesn't work. It doesn't work everywhere, it only works on the
 Okay, I decided to experiment with a proper python script.
 
 ```{.python filename="/usr/bin/duckdns"}
-#/usr/bin/python3
-import subprocess
-localip = subprocess.check_output('ip route get 8.8.8.8', shell=True).decode('utf-8')
-privateip = localip.split()
-print(privateip[6])
-subprocess.run(f"echo url='https://www.duckdns.org/update?domains=domainname&token=duckdnstoken&ip={private_ip[6]}' | curl -k -K -", shell=True)
-domain = 
-urllib.request.urlopen(f'https://www.duckdns.org/update?domains=domainname&token=duckdnstoken&ip={private_ip[6]}')
+import urllib.request
+import socket
+
+domain = ""
+token = ""
+privateip = "?"
+
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+s.connect(("8.8.4.4", 80))
+privateip = s.getsockname()[0]
+print(privateip)
+
+
+print(privateip)
+
+req = urllib.request.Request(f'https://www.duckdns.org/update?domains={domain}&token={token}&ip={privateip}')
+content = urllib.request.urlopen(req).read()
+print(content.decode('utf-8'))
+```
+
+And a systemd script to execute it: 
+
+```{.ini filename="/etc/systemd/system/duckdns.service" .code-overflow-wrap}
+[Unit]
+Description=duckdns private ip
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/python3 /usr/bin/duckdns
+[Install]
+WantedBy=multi-user.target
 ```
 
 Although I don't think I'll be using it, I may stick to the python one liner. 
@@ -75,14 +100,21 @@ Although I don't think I'll be using it, I may stick to the python one liner.
 
 For convience purposes, I have posted this online, so I can simply copy and paste stuff from this post. 
 
-Here is the encrypted token: 
+Here is the encrypted token for the duckdns account linked to my github:
 
 ```{.default}
 g6mYJ1tm32p33JZxOIMvj5QcpQAFELSm+QmKe3qDkWsehk4WN17/TLUx+aDrwFV7JqC05qIDn0E6f9+udPVcMSxvj827
 ```
 
+This one contains: shidoshido, tohkatohka, kotorikotori.
 
+And here is the encyrpted duckdns token for the account linked to my school email: 
 
+```{.default}
+eIqisxdT/bPbW8xYNnVZWusGFRiOBrIxWVP/KqbKRogE9LIT//qSk8Wgcp1JKZNN+I13DY6E56RoERudJCyJza46pDM=
+``
+
+This one contains: origamiorigami.
 
 
 This will make it very convinient to transfer configurations around, since everything is on a single web page. 
@@ -90,7 +122,7 @@ This will make it very convinient to transfer configurations around, since every
 I created an ssh key. Here is the public key: 
 
 ```{.default}
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC/IkkryYkpOb1CTWP7UdD0o+26/E/MlQ7a23ls6F2TVL5eiltbDylm73DrmRkz0ETgUvHCs4yq2fHxSDvwPQwSGbipzsF4HEqQPWkMyZZu23fLgBiKENI/ApJXw97Xvp7zi7RGy7hATTp2TIusZJ8ChyE09ZVMUhnO0NrifIMblmZidVKVPBGCj8SxP5He0oEzthdoNbXZ49ql+fSLlqlwoFte7z8NlEfrL68MijKKftVmZMP9LL5ji1GyZTXuwaMOhR423MkVN+DWD78IWp05Gfn/AZrVUf+15jq3So6NxcQl1e0U9nUsVezgMB9VS+3Na5fa3Og8t+ey/BE76hjFR6+6R94t+DHuXooQk8zr4x132FcflA2gxz5UtHV7vZRb9GBSbf7hXDbj7U66MahIRV70iOLSO/k168NvVA7MarnYvYnT8Yc2U6vynqqqg59lZlzKZRypClliaX4/rHdhu9obQHCFsvktjiBbV8aCxP4ACHIDu0hkfbtRGbM5Y3k= moonpie@lizard
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC/IkkryYkpOb1CTWP7UdD0o+26/E/MlQ7a23ls6F2TVL5eiltbDylm73DrmRkz0ETgUvHCs4yq2fHxSDvwPQwSGbipzsF4HEqQPWkMyZZu23fLgBiKENI/ApJXw97Xvp7zi7RGy7hATTp2TIusZJ8ChyE09ZVMUhnO0NrifIMblmZidVKVPBGCj8SxP5He0oEzthdoNbXZ49ql+fSLlqlwoFte7z8NlEfrL68MijKKftVmZMP9LL5ji1GyZTXuwaMOhR423MkVN+DWD78IWp05Gfn/AZrVUf+15jq3So6NxcQl1e0U9nUsVezgMB9VS+3Na5fa3Og8t+ey/BE76hjFR6+6R94t+DHuXooQk8zr4x132FcflA2gxz5UtHV7vZRb9GBSbf7hXDbj7U66MahIRV70iOLSO/k168NvVA7MarnYvYnT8Yc2U6vynqqqg59lZlzKZRypClliaX4/rHdhu9obQHCFsvktjiBbV8aCxP4ACHIDu0hkfbtRGbM5Y3k= 
 ```
 
 And here is the private key, encrypted of course. 
