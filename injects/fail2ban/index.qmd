@@ -42,3 +42,11 @@ It's stored in the same directory as this document, so just clone this repo and 
 ```{.default}
 ansible-playbook -i inventory playbook.yml --ask-become-pass
 ```
+
+However, the manjaro machine, since it is archlinux based, does not support the same method of installing packages. 
+
+To install fail2ban on the manjaro machine, I simply did:
+
+`sudo pacman -Syu fail2ban`
+
+`sudo systemctl enable --now fail2ban`
