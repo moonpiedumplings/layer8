@@ -195,6 +195,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">state</span><span class="kw">:</span><span class="at"> started</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>It’s stored in the same directory as this document, so just clone this repo and cd here.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ansible-playbook -i inventory playbook.yml --ask-become-pass</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>However, the manjaro machine, since it is archlinux based, does not support the same method of installing packages.</p>
+<p>To install fail2ban on the manjaro machine, I simply did:</p>
+<p><code>sudo pacman -Syu fail2ban</code></p>
+<p><code>sudo systemctl enable --now fail2ban</code></p>
 
 
 
