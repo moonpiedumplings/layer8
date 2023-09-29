@@ -1,0 +1,94 @@
+---
+title: "Making zentyal not suck"
+date: "2023-9-28"
+categories: [linux, cybersecurity]
+author: "Jeffrey Fonseca"
+
+format:
+  html:
+    code-fold: true
+    code-summary: "Show the code"
+    code-block-background: true
+execute:
+  freeze: true
+---
+
+
+# Intro
+
+Zentyal sucks, especially for our purposes. It comes with a bunch of packages that aren't needed, increasing the attatck surface. It comes with a 
+
+# Fixing
+
+## Systemd services
+
+I don't know why they included both the firewall manager and the web administration gui in the same systemd service, but ok I guess.
+
+I disabled:
+
+`zentyal.service`
+
+
+`zentyal.lxdm.service`
+
+`zentyal.loggerd.service`
+
+`zentyal.license-manager.service`
+
+`zentyal.webadmin-nginx.service`
+
+`zentyal.webadmin-uwsgi.service`
+
+`zentayl.antivirus.clamonacc.service`
+
+Hmm, maybe we should keep that one. It simply runs `/usr/sbin/clamonacc`, which seems to be an actually good thing. Didn't too too much research into this right now, but here are two relevant docs:
+
+<https://blog.clamav.net/2019/09/understanding-and-transitioning-to.html>
+
+<https://docs.clamav.net/manual/Usage/Scanning.html> 
+
+
+## Networking
+
+By default, zentyal uses `ifup`, and `ifdown`, which are deprecated commands. In addition to using deprecated commands, it also has tons of custom scripts that do things like create a ton of iptables chains, which I am assuming zentyal uses for their custom firewall software. 
+
+
+However, after I disabled the zentyal services, the network interface only has LAN access, and no WAN access. I think the ifup/down scripts are responsible for also setting up default gateways, as the ip route of this machine is missing a default gateway. 
+
+To add one, so I can get internet access again:
+
+`ip route add default via 10.40.1.1`
+
+And with this I have internet access working. 
+
+I then decided to install networkmanager (after updating and upgrading)
+
+`apt install network-manager`
+
+`systemctl enable --now NetworkManager`
+
+However, upon enabling this service, networkmanager complates that because the interface config for `eth0` can be found in `/etc/network/interfaces`, and it is configured by /etc/network/interfaces, NetworkManager will refuse to configure it. 
+
+
+`mv /etc/network/interfaces/ /etc/network/interfaces.bac/`
+
+However, networkmanager still complains because it seems to have been configured to ignore devices managed by ifupdown by default.
+
+In `/etc/NetworkManager/NetworkManager.conf`, edit 
+
+
+```{.ini}
+[ifupdown]
+managed=true
+
+[keyfile]
+unmanaged-devices=none
+```
+
+
+I don't really like this solution to keyfile, since sometimes having certain unmanaged devices are good, but I guess I will just have to trust the udev rules that are included by default in most distros, that exclude things like the docker or libvirt bridges and related interfaces. 
+
+
+And, I have nothing other than LAN internet access again. Really? 
+
+
