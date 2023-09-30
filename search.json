@@ -25,7 +25,7 @@
     "href": "injects/index.html",
     "title": "Injects",
     "section": "",
-    "text": "Date\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nSep 16, 2023\n\n\nFail2ban Inject\n\n\nJeffrey Fonseca\n\n\n\n\nAug 26, 2023\n\n\nAutomated Upgrades Inject\n\n\nJeffrey Fonseca\n\n\n\n\n\n\nNo matching items"
+    "text": "Date\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nSep 16, 2023\n\n\nFail2ban Inject\n\n\nJeffrey Fonseca\n\n\n\n\nAug 26, 2023\n\n\nAutomated Upgrades Inject\n\n\nJeffrey Fonseca\n\n\n\n\nInvalid Date\n\n\nPassword Policy Inject\n\n\nJeffrey Fonseca\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "injects/fail2ban/index.html",
@@ -33,6 +33,13 @@
     "title": "Fail2ban Inject",
     "section": "",
     "text": "Fail2ban is a service that blocks bots and other malicious machines based on their activity and ip addresses.\nI’ve decided to write an ansible playbook that will automate installation of fail2ban.\n---\n- name: Install Fail2ban and enable the service\n  hosts: your_target_host\n  become: yes  # You may need to escalate privileges, so become root/sudo\n\n  tasks:\n    - name: Install fail2ban\n      ansible.builtin.package:\n        name: fail2ban\n        state: present\n\n    - name: Enable Fail2ban service\n      systemd:\n        name: fail2ban\n        enabled: yes\n        state: started\nIt’s stored in the same directory as this document, so just clone this repo and cd here.\nansible-playbook -i inventory playbook.yml --ask-become-pass\nHowever, the manjaro machine, since it is archlinux based, does not support the same method of installing packages.\nTo install fail2ban on the manjaro machine, I simply did:\nsudo pacman -Syu fail2ban\nsudo systemctl enable --now fail2ban"
+  },
+  {
+    "objectID": "injects/passwords/index.html",
+    "href": "injects/passwords/index.html",
+    "title": "Password Policy Inject",
+    "section": "",
+    "text": "Purpose\nEncourage users to create strong passwords, via a new password policy.\n\n\nNIST Recommendations\nThe NIST recommendations for password policies have changed. Things like special characters, encourage users to create weaker passwords.\nA short overview of NIST reccomendations, according to one article, and another:\n\nHuman generated passwords are minimun 8 characters, machine generated one’s are minimum 6\nCheck passwords against a denylist, of already compromised passwords, or public dictionaries\nSpecial Character rules are optional\nAllow 64 character passwords\nAllow show password while typing, as increased chance of unfixable typos encourages users to create weaker passwords\nEnforce 2FA\nRegular password resets encourage weak passwords, so only reset unless a compromise is suspected\n\n\n\nPersonal Recommendations\nWith these guidelines in place, I suggess a passphrase policy, rather than a password one. Passphrases are easy to remember, and can be done with just as much entropy. In fact, I advocate for these rather than passwords.\n\nPassphrases must be at least 6 words\nTwo of these words cannot be in the more common dictionaries, like those an attacker would use to do a brute force attack\nEasily guessable phrases, like full sentences (E.G. [name] loves [name] very much), should automatically fail.\n\nAn advanced way to implement this would be to have a large langauge model look at passwords,\nAn easier way to implement this is to simply ban verbs and adverbs.\n\nPassword resets shoudl be done only when compromise is suspected\nEnforce 2FA authentication, but no SMS. SMS is insecure because it is trivial for an attacker to impersonate themselves as the owner of someone else’s phone that they “lost”. Either TOTP/OTP codes (Google, Microsoft authenticator), key based, or even biometric, if possible.\nBan anything too close to any leaked or compromised passwords\n\n\n\nImplemenation Plan\nModern linux systems use pam to configure password rules. Available on almost all linux systems, including embedded systems like routers.\nWe can configure pam to set the rules we want.\nFor example, you can point pam to a dictionary to disallow any passwords with words from a dictionary:\n\n\n/etc/pam.d/pwa_quality\n\n....\npassword requisite pam_pwquality.so retry=3 dictcheck=/path/to/your/wordlist.txt\n\nWe can use this, in addition to other pam policies to ensure secure passwords.\nFor 2FA, we can set up something like google authenticator. Here is a guide by Red Hat on how to do so"
   },
   {
     "objectID": "projects/index.html",

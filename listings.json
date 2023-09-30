@@ -3,7 +3,8 @@
     "listing": "/injects/index.html",
     "items": [
       "/injects/fail2ban/index.html",
-      "/injects/automation/index.html"
+      "/injects/automation/index.html",
+      "/injects/passwords/index.html"
     ]
   },
   {

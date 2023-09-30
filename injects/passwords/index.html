@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Projects I have done for the club, usually of my own volition">
+<meta name="author" content="Jeffrey Fonseca">
 
-<title>Jeffrey Fonseca’s Layer 8 Work - Projects</title>
+<title>Jeffrey Fonseca’s Layer 8 Work - Password Policy Inject</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,27 +21,59 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-listing/list.min.js"></script>
-<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -62,40 +94,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -105,7 +106,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Jeffrey Fonseca’s Layer 8 Work</span>
     </a>
   </div>
@@ -116,11 +117,11 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../injects/" rel="" target="">
+    <a class="nav-link" href="../../injects/" rel="" target="">
  <span class="menu-text">Injects</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../projects/" rel="" target="">
+    <a class="nav-link" href="../../projects/" rel="" target="">
  <span class="menu-text">Projects</span></a>
   </li>  
 </ul>
@@ -131,89 +132,110 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">Projects</h1>
-                  <div>
-        <div class="description">
-          Projects I have done for the club, usually of my own volition
-        </div>
-      </div>
-                </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta">
-
-      
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(2)</span></div><div class="category" data-category="cybersecurity">cybersecurity <span class="quarto-category-count">(2)</span></div><div class="category" data-category="linux">linux <span class="quarto-category-count">(2)</span></div></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#purpose" id="toc-purpose" class="nav-link active" data-scroll-target="#purpose">Purpose</a></li>
+  <li><a href="#nist-recommendations" id="toc-nist-recommendations" class="nav-link" data-scroll-target="#nist-recommendations">NIST Recommendations</a></li>
+  <li><a href="#personal-recommendations" id="toc-personal-recommendations" class="nav-link" data-scroll-target="#personal-recommendations">Personal Recommendations</a></li>
+  <li><a href="#implemenation-plan" id="toc-implemenation-plan" class="nav-link" data-scroll-target="#implemenation-plan">Implemenation Plan</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Password Policy Inject</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">linux</div>
+    <div class="quarto-category">cybersecurity</div>
+  </div>
+  </div>
 
 
 
+<div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jeffrey Fonseca </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">Invalid Date</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
 
+</header>
 
-
-
-<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
-
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-Date
-</th>
-<th>
-Title
-</th>
-<th>
-Author
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-categories="linux,cybersecurity" data-listing-date-sort="1695884400000" data-listing-file-modified-sort="1695952176149" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="Making zentyal not suck" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">Sep 28, 2023</span>
-</td>
-<td>
-<a href="../projects/zentyal/index.html" class="title listing-title">Making zentyal not suck</a>
-</td>
-<td>
-<span class="listing-author">Jeffrey Fonseca</span>
-</td>
-</tr>
-<tr data-index="1" data-categories="linux,cybersecurity" data-listing-date-sort="1694502000000" data-listing-file-modified-sort="1695947246872" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="Setting up ssh for linux machines in the lab" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">Sep 12, 2023</span>
-</td>
-<td>
-<a href="../projects/ssh/index.html" class="title listing-title">Setting up ssh for linux machines in the lab</a>
-</td>
-<td>
-<span class="listing-author">Jeffrey Fonseca</span>
-</td>
-</tr>
-</tbody>
-
-</table>
-<div class="listing-no-matching d-none">
-No matching items
+<section id="purpose" class="level1">
+<h1>Purpose</h1>
+<p>Encourage users to create strong passwords, via a new password policy.</p>
+</section>
+<section id="nist-recommendations" class="level1">
+<h1>NIST Recommendations</h1>
+<p>The NIST recommendations for password policies have changed. Things like special characters, encourage users to create weaker passwords.</p>
+<p>A short overview of NIST reccomendations, according to <a href="https://www.itsasap.com/blog/nist-password-guidelines">one article</a>, and <a href="https://www.netsec.news/summary-of-the-nist-password-recommendations-for-2021/">another</a>:</p>
+<ul>
+<li>Human generated passwords are minimun 8 characters, machine generated one’s are minimum 6</li>
+<li>Check passwords against a denylist, of already compromised passwords, or public dictionaries</li>
+<li>Special Character rules are optional</li>
+<li>Allow 64 character passwords</li>
+<li>Allow show password while typing, as increased chance of unfixable typos encourages users to create weaker passwords</li>
+<li>Enforce 2FA</li>
+<li>Regular password resets encourage weak passwords, so only reset unless a compromise is suspected</li>
+</ul>
+</section>
+<section id="personal-recommendations" class="level1">
+<h1>Personal Recommendations</h1>
+<p>With these guidelines in place, I suggess a <em>passphrase</em> policy, rather than a password one. Passphrases are easy to remember, and can be done with just as much entropy. In fact, I advocate for these rather than passwords.</p>
+<ul>
+<li>Passphrases must be at least 6 words</li>
+<li>Two of these words cannot be in the more common dictionaries, like those an attacker would use to do a brute force attack</li>
+<li>Easily guessable phrases, like full sentences (E.G. [name] loves [name] very much), should automatically fail.
+<ul>
+<li>An advanced way to implement this would be to have a large langauge model look at passwords,</li>
+<li>An easier way to implement this is to simply ban verbs and adverbs.</li>
+</ul></li>
+<li>Password resets shoudl be done only when compromise is suspected</li>
+<li>Enforce 2FA authentication, but <strong>no SMS</strong>. SMS is insecure because it is trivial for an attacker to impersonate themselves as the owner of someone else’s phone that they “lost”. Either TOTP/OTP codes (Google, Microsoft authenticator), key based, or even biometric, if possible.</li>
+<li>Ban anything too close to any leaked or compromised passwords</li>
+</ul>
+</section>
+<section id="implemenation-plan" class="level1">
+<h1>Implemenation Plan</h1>
+<p>Modern linux systems use <code>pam</code> to configure password rules. Available on almost all linux systems, including embedded systems like routers.</p>
+<p>We can configure pam to set the rules we want.</p>
+<p>For example, you can point pam to a dictionary to disallow any passwords with words from a dictionary:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>/etc/pam.d/pwa_quality</strong></pre>
 </div>
-</div></main> <!-- /main -->
+<div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>....</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>password requisite pam_pwquality.so retry=3 dictcheck=/path/to/your/wordlist.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can use this, in addition to other pam policies to ensure secure passwords.</p>
+<p>For 2FA, we can set up something like google authenticator. Here is a <a href="https://www.redhat.com/sysadmin/mfa-linux">guide by Red Hat on how to do so</a></p>
+
+
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
