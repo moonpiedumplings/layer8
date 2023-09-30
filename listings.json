@@ -9,6 +9,7 @@
   {
     "listing": "/projects/index.html",
     "items": [
+      "/projects/zentyal/index.html",
       "/projects/ssh/index.html"
     ]
   }
