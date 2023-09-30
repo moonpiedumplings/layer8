@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Jeffrey Fonseca">
+<meta name="dcterms.date" content="2023-09-30">
 
 <title>Jeffrey Fonseca’s Layer 8 Work - Password Policy Inject</title>
 <style>
@@ -143,7 +144,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#purpose" id="toc-purpose" class="nav-link active" data-scroll-target="#purpose">Purpose</a></li>
   <li><a href="#nist-recommendations" id="toc-nist-recommendations" class="nav-link" data-scroll-target="#nist-recommendations">NIST Recommendations</a></li>
   <li><a href="#personal-recommendations" id="toc-personal-recommendations" class="nav-link" data-scroll-target="#personal-recommendations">Personal Recommendations</a></li>
-  <li><a href="#implemenation-plan" id="toc-implemenation-plan" class="nav-link" data-scroll-target="#implemenation-plan">Implemenation Plan</a></li>
+  <li><a href="#implementation-plan" id="toc-implementation-plan" class="nav-link" data-scroll-target="#implementation-plan">Implementation Plan</a></li>
   </ul>
 </nav>
     </div>
@@ -153,6 +154,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Password Policy Inject</h1>
+<p class="subtitle lead">Linux Team</p>
   <div class="quarto-categories">
     <div class="quarto-category">linux</div>
     <div class="quarto-category">cybersecurity</div>
@@ -173,7 +175,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">Invalid Date</p>
+      <p class="date">September 30, 2023</p>
     </div>
   </div>
   
@@ -217,18 +219,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Ban anything too close to any leaked or compromised passwords</li>
 </ul>
 </section>
-<section id="implemenation-plan" class="level1">
-<h1>Implemenation Plan</h1>
+<section id="implementation-plan" class="level1">
+<h1>Implementation Plan</h1>
 <p>Modern linux systems use <code>pam</code> to configure password rules. Available on almost all linux systems, including embedded systems like routers.</p>
 <p>We can configure pam to set the rules we want.</p>
 <p>For example, you can point pam to a dictionary to disallow any passwords with words from a dictionary:</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>/etc/pam.d/pwa_quality</strong></pre>
-</div>
 <div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>....</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>password requisite pam_pwquality.so retry=3 dictcheck=/path/to/your/wordlist.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>password requisite pam_pwquality.so retry=3 dictcheck=/path/to/your/wordlist.txt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>....</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We can use this, in addition to other pam policies to ensure secure passwords.</p>
 <p>For 2FA, we can set up something like google authenticator. Here is a <a href="https://www.redhat.com/sysadmin/mfa-linux">guide by Red Hat on how to do so</a></p>
 

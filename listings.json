@@ -2,9 +2,10 @@
   {
     "listing": "/injects/index.html",
     "items": [
+      "/injects/passwords/index.html",
+      "/injects/hivestrom-practice-1/index.html",
       "/injects/fail2ban/index.html",
-      "/injects/automation/index.html",
-      "/injects/passwords/index.html"
+      "/injects/automation/index.html"
     ]
   },
   {
