@@ -1,0 +1,30 @@
+---
+title: "Hivestorm Practice 1"
+date: "2023-9-30"
+categories: [linux, cybersecurity]
+author: "Jeffrey Fonseca"
+subtitle: Linux Team
+format:
+  html:
+    code-fold: true
+    code-summary: "Show the code"
+    code-block-background: true
+execute:
+  freeze: true
+---
+
+
+![](Screenshot_20230930_164431.png)
+
+Here is my score. I did worse than I thought I would have, and I am disappointed. 
+
+There are a few key mistakes:
+
+I did not read the injects/tasks before browsing around, and getting to work. This caused me to delete a file necessary to answering some of the questions, and I did not have time to restore from a backup. 
+
+I should have made snapshots, so I did not have to do a full restore, or recreate the virtual machine.
+
+
+I should be more familier with pam and password policies. I did some experimentation, but I don't think I did things like password requirements properly, otherwise I think I would have gotten points for them.
+
+I also should have set up some file searching methods. After discussing this with my peers, there was a lot of media files lying around, and although I did some searching, it wasn't the level of extensiveness necessary to actually find the memes files lying around, and getting points. Learning how to use `find`, or `locate` to find media files would be nice, although I could also install a specific tool, but I think it's unlikely that Ubuntu 16 has access to the latest and greatest file indexing/searching software. 
